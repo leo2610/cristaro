@@ -1,0 +1,1053 @@
+/* =========================================================
+   ORÁCULO — LANDING PAGE
+   CSS organizado por componentes
+   ========================================================= */
+
+/* =========================================================
+   01. VARIÁVEIS
+   ========================================================= */
+
+/* Paleta extraída do site modelo (cristaro.framer.website) */
+:root {
+  /* Fundos */
+  --color-bg: #1E1E3C;          /* azul-noite do modelo */
+  --color-bg-alt: #26264A;      /* variação mais clara (derivada) para alternar seções */
+  --color-bg-deep: #14142B;     /* variação mais escura (derivada): citação, cards, footer */
+
+  /* Destaques */
+  --color-gold: #FFD700;        /* amarelo dos botões/cards do modelo */
+  --color-gold-soft: #FAE064;   /* amarelo suave (borda do logo) */
+  --color-lilac: #C8A2C8;       /* lilás do card "Magia Divina" e botões */
+
+  /* Textos */
+  --color-heading: #F5DEB3;     /* títulos (pêssego/trigo) */
+  --color-text: #F5F5DC;        /* texto principal (bege) */
+  --color-text-muted: rgba(245, 245, 220, 0.72);
+  --color-text-faint: rgba(245, 245, 220, 0.5);
+  --color-on-accent: #000000;   /* texto sobre amarelo/lilás */
+
+  /* Linhas e bordas */
+  --color-border: rgba(245, 222, 179, 0.22);
+
+  /* Canais RGB para usar em transparências: rgba(var(--x-rgb), 0.2) */
+  --color-gold-rgb: 255, 215, 0;
+  --color-lilac-rgb: 200, 162, 200;
+  --color-wheat-rgb: 245, 222, 179;
+
+  /* Antes não existiam (estavam sendo usadas sem definição) */
+  --transition: 0.3s ease;
+  --section-padding: 130px;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Montserrat", sans-serif;
+}
+
+
+/* =========================================================
+   02. RESET / BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  color: var(--color-heading);
+}
+
+/* =========================================================
+   03. ELEMENTOS REUTILIZÁVEIS
+   ========================================================= */
+
+.eyebrow {
+  margin-bottom: 25px;
+  color: var(--color-gold);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  line-height: 1.4;
+}
+
+.eyebrow.dark {
+  color: var(--color-lilac);
+}
+
+em {
+  color: var(--color-gold);
+  font-style: italic;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 15px 24px;
+
+  border: 1px solid currentColor;
+
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.button:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-on-accent);
+  transform: translateY(-2px);
+}
+
+.button-light {
+  border-color: rgba(var(--color-wheat-rgb), 0.5);
+  color: var(--color-text);
+}
+
+.text-link {
+  display: inline-block;
+
+  margin-top: 25px;
+  padding-bottom: 7px;
+
+  border-bottom: 1px solid rgba(var(--color-wheat-rgb), 0.35);
+
+  font-size: 8px;
+  letter-spacing: 0.2em;
+
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.text-link:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* =========================================================
+   04. HEADER
+   ========================================================= */
+
+.header {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 82px;
+  padding: 0 5vw;
+
+  background: var(--color-bg);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.nav {
+  display: flex;
+  gap: 38px;
+
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav a {
+  transition: color var(--transition);
+}
+
+.nav a:hover {
+  color: var(--color-gold);
+}
+
+.header-button {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 15px 24px;
+
+  border: 1px solid currentColor;
+
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  transition: all var(--transition);
+}
+
+.header-button:hover {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-on-accent);
+}
+
+.menu-button {
+  display: none;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--color-heading);
+  font-size: 25px;
+}
+
+/* =========================================================
+   05. HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: calc(100vh - 82px);
+
+  overflow: hidden;
+
+  color: var(--color-text);
+
+  background:
+    radial-gradient(
+      circle at 75% 30%,
+      rgba(var(--color-gold-rgb), 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 30% 75%,
+      rgba(var(--color-lilac-rgb), 0.16),
+      transparent 32%
+    ),
+    linear-gradient(
+      125deg,
+      var(--color-bg),
+      var(--color-bg-deep) 70%
+    );
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 8%;
+
+  border: 1px solid rgba(var(--color-wheat-rgb), 0.15);
+
+  transform: rotate(0deg);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.12;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 35px 35px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(760px, 90%);
+  margin-left: 12vw;
+  padding: 90px 0;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(58px, 8vw, 115px);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+}
+
+.hero-text {
+  max-width: 430px;
+  margin: 38px 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.hero-symbol {
+  position: absolute;
+  top: 20%;
+  right: 12%;
+
+  color: rgba(var(--color-gold-rgb), 0.22);
+
+  font-family: var(--font-display);
+  font-size: 210px;
+
+  animation: float 5s ease-in-out infinite;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 35px;
+  left: 5vw;
+
+  color: var(--color-text-faint);
+
+  font-size: 8px;
+  letter-spacing: 0.25em;
+}
+
+.scroll span {
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+  }
+}
+
+/* =========================================================
+   06. INTRODUÇÃO
+   ========================================================= */
+
+.intro {
+  padding: var(--section-padding) 10vw;
+
+  background: var(--color-bg);
+
+  text-align: center;
+}
+
+.intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(50px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+}
+
+.intro-text {
+  max-width: 560px;
+  margin: 35px auto 0;
+
+  color: var(--color-text);
+
+  font-size: 13px;
+  line-height: 2;
+}
+
+/* =========================================================
+   07. SERVIÇOS
+   ========================================================= */
+
+.services {
+  padding: 100px 5vw;
+
+  background: var(--color-bg-alt);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 50px;
+
+  margin-bottom: 70px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(50px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+}
+
+.heading-description {
+  max-width: 320px;
+
+  color: var(--color-text-muted);
+
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* =========================================================
+   08. GRID DOS SERVIÇOS
+   ========================================================= */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+}
+
+.service-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  min-height: 520px;
+  padding: 28px;
+
+  overflow: hidden;
+
+  color: var(--color-text);
+
+  background: var(--color-bg-deep);
+}
+
+.service-card:nth-child(1),
+.service-card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.service-card:nth-child(3),
+.service-card:nth-child(4),
+.service-card:nth-child(5) {
+  grid-column: span 2;
+}
+
+.service-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 15px;
+
+  border: 1px solid rgba(var(--color-wheat-rgb), 0.16);
+
+  pointer-events: none;
+}
+
+.card-tarot {
+  background:
+    linear-gradient(
+      145deg,
+      #2C2C5A,
+      var(--color-bg-deep)
+    );
+}
+
+.card-cigano {
+  background:
+    linear-gradient(
+      145deg,
+      #4A3A6B,
+      var(--color-bg-deep)
+    );
+}
+
+.card-padilha {
+  background:
+    linear-gradient(
+      145deg,
+      #3A2A55,
+      var(--color-bg-deep)
+    );
+}
+
+.card-magia {
+  background:
+    linear-gradient(
+      145deg,
+      #5A4578,
+      var(--color-bg-deep)
+    );
+}
+
+.card-mesa {
+  background:
+    linear-gradient(
+      145deg,
+      #1F3A5A,
+      var(--color-bg-deep)
+    );
+}
+
+.card-number {
+  position: absolute;
+  top: 30px;
+  right: 32px;
+
+  color: var(--color-lilac);
+
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+
+.card-art {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+
+  color: rgba(var(--color-gold-rgb), 0.22);
+
+  font-family: var(--font-display);
+  font-size: 100px;
+  white-space: nowrap;
+
+  transform: translate(-50%, -50%);
+}
+
+.card-art span {
+  color: rgba(var(--color-wheat-rgb), 0.3);
+
+  font-size: 0.5em;
+
+  vertical-align: middle;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-content > p:first-child {
+  margin-bottom: 15px;
+
+  color: var(--color-gold);
+
+  font-size: 8px;
+  letter-spacing: 0.25em;
+}
+
+.card-content h3 {
+  margin-bottom: 22px;
+
+  font-family: var(--font-display);
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 0.83;
+}
+
+.card-content > p:not(:first-child) {
+  max-width: 300px;
+
+  color: var(--color-text-muted);
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   09. CITAÇÃO
+   ========================================================= */
+
+.quote {
+  position: relative;
+
+  padding: 150px 8vw;
+
+  overflow: hidden;
+
+  background: var(--color-bg-deep);
+  color: var(--color-text);
+
+  text-align: center;
+}
+
+.quote-symbol {
+  margin-bottom: 50px;
+
+  color: rgba(var(--color-gold-rgb), 0.2);
+
+  font-family: var(--font-display);
+  font-size: 170px;
+  line-height: 0.4;
+}
+
+.quote h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 78px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.quote .line {
+  width: 70px;
+  height: 1px;
+  margin: 40px auto 25px;
+
+  background: var(--color-gold);
+}
+
+.quote > p:last-child {
+  max-width: 560px;
+  margin: 0 auto;
+
+  color: var(--color-text-muted);
+
+  font-size: 12px;
+  line-height: 2;
+}
+
+/* =========================================================
+   10. COMO FUNCIONA
+   ========================================================= */
+
+.steps {
+  padding: var(--section-padding) 8vw;
+
+  background: var(--color-bg);
+}
+
+.steps h2 {
+  margin-bottom: 80px;
+
+  font-family: var(--font-display);
+  font-size: clamp(50px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid var(--color-border);
+}
+
+.step {
+  padding: 35px 30px 20px 0;
+
+  border-right: 1px solid var(--color-border);
+}
+
+.step:not(:first-child) {
+  padding-left: 30px;
+}
+
+.step:last-child {
+  border-right: 0;
+}
+
+.step span {
+  color: var(--color-gold);
+
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+
+.step h3 {
+  margin: 35px 0 12px;
+
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.step p {
+  max-width: 260px;
+
+  color: var(--color-text-muted);
+
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+/* =========================================================
+   11. CTA
+   ========================================================= */
+
+.cta {
+  position: relative;
+
+  padding: 150px 20px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle,
+      #2E2E5A,
+      var(--color-bg-deep) 65%
+    );
+
+  color: var(--color-text);
+
+  text-align: center;
+}
+
+.cta-symbol {
+  margin-bottom: 20px;
+
+  color: var(--color-gold);
+
+  font-size: 70px;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(55px, 7vw, 95px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.cta > p:not(.eyebrow) {
+  margin: 30px 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   12. FOOTER
+   ========================================================= */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 55px 5vw;
+
+  background: var(--color-bg-deep);
+  color: var(--color-text-muted);
+}
+
+.footer .logo {
+  color: var(--color-text);
+}
+
+.footer p {
+  margin-top: 12px;
+
+  color: var(--color-text-faint);
+
+  font-size: 10px;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.footer-right a {
+  transition: color var(--transition);
+}
+
+.footer-right a:hover {
+  color: var(--color-gold);
+}
+
+/* =========================================================
+   13. BOTÃO FLUTUANTE WHATSAPP
+   ========================================================= */
+
+.floating-whatsapp {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 20;
+
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+
+  background: var(--color-gold);
+  color: var(--color-on-accent);
+
+  font-size: 25px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.floating-whatsapp:hover {
+  background: var(--color-lilac);
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   14. ANIMAÇÕES
+   ========================================================= */
+
+.service-card,
+.step {
+  opacity: 0;
+  transform: translateY(25px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.service-card.visible,
+.step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   15. TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card:nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .service-card {
+    min-height: 500px;
+  }
+
+  .hero-symbol {
+    right: 5%;
+  }
+}
+
+/* =========================================================
+   16. MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  :root {
+    --section-padding: 90px;
+  }
+
+  /* Header */
+
+  .header {
+    height: 72px;
+  }
+
+  .header-button {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+
+    display: none;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 25px;
+
+    background: var(--color-bg);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  /* Hero */
+
+  .hero {
+    min-height: calc(100vh - 72px);
+  }
+
+  .hero-content {
+    width: 84%;
+    margin-left: 8vw;
+  }
+
+  .hero h1 {
+    font-size: clamp(55px, 16vw, 85px);
+  }
+
+  .hero-symbol {
+    top: 20%;
+    right: -10%;
+
+    font-size: 170px;
+  }
+
+  .scroll {
+    bottom: 25px;
+  }
+
+  /* Intro */
+
+  .intro {
+    padding-right: 8vw;
+    padding-left: 8vw;
+  }
+
+  /* Services */
+
+  .services {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .heading-description {
+    margin-top: 25px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card:nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .service-card {
+    min-height: 500px;
+  }
+
+  /* Steps */
+
+  .steps {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step,
+  .step:not(:first-child) {
+    padding: 30px 0;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .step:last-child {
+    border-bottom: 0;
+  }
+
+  /* Footer */
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+/* =========================================================
+   17. MOBILE PEQUENO
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 24px;
+  }
+
+  .hero-content {
+    padding: 60px 0;
+  }
+
+  .hero-text {
+    font-size: 12px;
+  }
+
+  .hero-symbol {
+    opacity: 0.6;
+  }
+
+  .service-card {
+    min-height: 460px;
+    padding: 25px;
+  }
+
+  .card-content h3 {
+    font-size: 38px;
+  }
+
+  .floating-whatsapp {
+    right: 18px;
+    bottom: 18px;
+
+    width: 54px;
+    height: 54px;
+  }
+}
